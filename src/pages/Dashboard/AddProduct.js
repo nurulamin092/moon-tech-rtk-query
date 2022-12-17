@@ -17,8 +17,8 @@ const AddProduct = () => {
         data.keyFeature4,
       ],
       spec: [],
+      
     };
-
     console.log(product);
   };
 
@@ -46,8 +46,9 @@ const AddProduct = () => {
             Brand
           </label>
           <select name='brand' id='brand' {...register("brand")}>
-            <option value='amd'>AMD</option>
+            <option value='apple'>Apple</option>
             <option value='intel'>Intel</option>
+            <option value='amd'>AMD</option>
           </select>
         </div>
         <div className='flex flex-col w-full max-w-xs'>
