@@ -1,24 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../../components/ProductCard";
 import { toggle, toggleBrand } from "../../features/filter/filterSlice";
+import { getProducts } from "../../features/products/productsSlice";
 
 const Home = () => {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
-  const filter = useSelector((state)=>state.filter)
+  const filter = useSelector((state)=>state.filter);
+  
+  const {products,isLoading} = useSelector((state)=>state.products);
+
   const {brands,stock} = filter;
 
+
   useEffect(() => {
-    fetch("http://localhost:4000/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data.data));
+    
+    dispatch(getProducts());
   }, []);
 
   const activeClass = "text-white  bg-indigo-500 border-white";
 
   let content;
-  
+  if (isLoading) {
+    content = <h1>Loading...</h1>
+  }
+
   if (products.length) {
     content = products.map((product)=>(
     <ProductCard key={product.model} product={product} />))
@@ -47,6 +54,7 @@ const Home = () => {
     
     
   }
+  
 
   return (
     <div className='max-w-7xl gap-14 mx-auto my-10'>
