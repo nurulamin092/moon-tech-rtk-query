@@ -6,3 +6,8 @@ export const fetchProducts = async () => {
     return data.data.data;
 }
 
+export const postProduct = async (productData) => {
+     await axios.post("/product",productData)
+   
+}
+
