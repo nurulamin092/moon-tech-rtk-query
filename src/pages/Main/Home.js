@@ -21,7 +21,7 @@ const Home = () => {
 
   // }, []);
 
-  const {data,isLoading,isSuccess,isError,error} = useGetProductsQuery(null,{refetchOnMountOrArgChange:true});
+  const {data,isLoading,isSuccess,isError,error} = useGetProductsQuery();
 
   const products = data?.data;
 
@@ -31,7 +31,7 @@ const Home = () => {
     return <p>Loading... </p>
     
   }
-
+  
   if (isError) {
     return <p>Something is wrong</p>
   }
