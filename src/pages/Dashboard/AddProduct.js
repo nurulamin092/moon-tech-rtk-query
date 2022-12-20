@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct, togglePostSuccess } from "../../features/products/productsSlice";
 
 
 const AddProduct = () => {
@@ -16,7 +15,7 @@ const AddProduct = () => {
     }
     if (!isLoading && postSuccess) {
       toast.success("Product Added",{id:"addProduct"})
-      dispatch(togglePostSuccess())
+     
       reset();
     }
     if (!isLoading && isError) {
@@ -39,7 +38,6 @@ const AddProduct = () => {
       
     };
 
-    dispatch(addProduct(product))
     
   
   };
