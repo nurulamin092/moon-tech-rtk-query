@@ -1,10 +1,11 @@
 import React, { useEffect ,useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../../components/ProductCard";
+import { useGetProductsQuery } from "../../features/api/apiSlice";
 import { toggle, toggleBrand } from "../../features/filter/filterSlice";
 
 const Home = () => {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
   const filter = useSelector((state)=>state.filter);
   
@@ -13,14 +14,23 @@ const Home = () => {
   const {brands,stock} = filter;
 
 
-  useEffect(() => {
-    fetch("http://localhost:4000/products")
-    .then((res)=>res.json())
-    .then((data)=>setProducts(data.data))
+  // useEffect(() => {
+  //   fetch("http://localhost:4000/products")
+  //   .then((res)=>res.json())
+  //   .then((data)=>setProducts(data.data))
 
-  }, []);
+  // }, []);
+
+  const {data,isLoading,isSuccess,isError,error} = useGetProductsQuery();
+
+  const products = data?.data;
 
   const activeClass = "text-white  bg-indigo-500 border-white";
+
+  if (isLoading) {
+    return <p>Loading... </p>
+    
+  }
 
   
 
