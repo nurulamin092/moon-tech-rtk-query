@@ -14,7 +14,7 @@ const ProductList = () => {
 
   useEffect(()=>{
     if (!isLoading && deleteSuccess) {
-      toast.success("Successfully removed")
+      toast.success("Successfully removed");
     }
   },[isLoading,deleteSuccess])
 
