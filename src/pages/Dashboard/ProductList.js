@@ -1,25 +1,15 @@
-import React, { useEffect } from "react";
-import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 
 const ProductList = () => {
-  // const [products, setProducts] = useState([]);
-  const {products,isLoading,deleteSuccess,isError,error} = useSelector((state)=>state.products)
-  const dispatch = useDispatch()
 
-  useEffect(() => {
-  
-  },[]);
+  const [products,setProducts] = useState([]);
 
   useEffect(()=>{
-    if (!isLoading && deleteSuccess) {
-      toast.success("Successfully removed");
-    }
-  },[isLoading,deleteSuccess])
+    fetch("http://localhost:4000/products")
+    .then((res)=>res.json())
+    .then((data)=>setProducts(data.data))
+  },[])
 
-  if (isLoading) {
-    return <p>Loading...</p>
-  }
   return (
     <div class='flex flex-col justify-center items-center h-full w-full '>
       <div class='w-full max-w-7xl mx-auto rounded-lg  bg-white shadow-lg border border-gray-200'>
@@ -78,7 +68,7 @@ const ProductList = () => {
                   </td>
                   <td class='p-2'>
                     <div class='flex justify-center'>
-                      <button>
+                      <button >
                         <svg
                           class='w-8 h-8 hover:text-blue-600 rounded-full hover:bg-gray-100 p-1'
                           fill='none'

@@ -32,6 +32,9 @@ const Home = () => {
     
   }
 
+  if (isError) {
+    return <p>Something is wrong</p>
+  }
   
 
   return (
